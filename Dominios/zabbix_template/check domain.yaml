@@ -1,0 +1,25 @@
+zabbix_export:
+  version: '7.2'
+  template_groups:
+    - uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+  templates:
+    - uuid: c2ee42ce04f74d95aee2508c88d3f3ad
+      template: 'Domain Checks'
+      name: 'Domain Checks'
+      groups:
+        - name: Templates
+      items:
+        - uuid: 6d8ef76817ea40498cb8782081c64643
+          name: 'Domain expiration time for {$DOMAINNAME}'
+          key: 'check_domain[{$DOMAINNAME}]'
+          delay: 1d
+          triggers:
+            - uuid: 6f6f8ba08b744eb798b460e165dd9902
+              expression: 'last(/Domain Checks/check_domain[{$DOMAINNAME}])< 30'
+              name: 'Domain name {$DOMAINNAME} will expire in less than 30 days'
+              priority: DISASTER
+            - uuid: 99c1691d7d9641d88011d4732fd36c94
+              expression: 'last(/Domain Checks/check_domain[{$DOMAINNAME}])< 60'
+              name: 'Domain name {$DOMAINNAME} will expire in less than 60 days'
+              priority: HIGH
