@@ -5,7 +5,6 @@
 # Suporta: .com, .cn, .com.br, .org, .net, .info, etc.
 # Modo 1: ./check_domain_expiry.sh dominio.com
 #         → Retorna: 123  (ou -1 se erro)
-#
 # Modo 2: ./check_domain_expiry.sh arquivo.txt
 #         → Retorna: dominio.com: 123 (em cor)
 # --------------------------------------------
